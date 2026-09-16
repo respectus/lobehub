@@ -69,6 +69,8 @@ export default {
     'The provider blocked this request or its output due to content policy. Please revise your prompt and try again.',
   ProviderNetworkError:
     'Connection to the provider timed out or was dropped. Please check your network and try again.',
+  RemoteMediaDownloadTimeout:
+    'The provider timed out while downloading an attached image or file. Please try again.',
   ProviderServiceUnavailable:
     'The provider is temporarily overloaded or unavailable. Please try again shortly.',
   QuotaLimitReached:
