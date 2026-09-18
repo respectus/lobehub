@@ -28,6 +28,7 @@ import type {
   DeviceGitPullRequestAction,
   DeviceGitPullRequestActionResult,
   DeviceGitPullRequestDetailResult,
+  DeviceGitPullRequestMergeContext,
   DeviceGitRemoteBranchListItem,
   DeviceGitRemoveWorktreeResult,
   DeviceGitRenameBranchResult,
@@ -475,6 +476,30 @@ export class DeviceGateway {
       {
         number: params.number,
         path: params.path,
+      },
+    );
+  }
+
+  /** Branch-protection / permission context for a pull request on a remote device. */
+  gitPullRequestMergeContext(params: {
+    baseRefName: string;
+    deviceId: string;
+    headRefOid: string;
+    number: number;
+    path: string;
+    repo: { name: string; owner: string };
+    userId: string;
+    workspaceId?: string;
+  }) {
+    return this.invokeDeviceRead<DeviceGitPullRequestMergeContext>(
+      'getPullRequestMergeContext',
+      { ...params, timeout: 20_000 },
+      {
+        baseRefName: params.baseRefName,
+        headRefOid: params.headRefOid,
+        number: params.number,
+        path: params.path,
+        repo: params.repo,
       },
     );
   }
